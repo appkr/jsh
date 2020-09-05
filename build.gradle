@@ -1,0 +1,17 @@
+plugins {
+    id 'java'
+    id 'application'
+    id 'com.github.mrsarm.jshell.plugin' version '1.0.0'
+}
+
+repositories {
+    jcenter()
+}
+
+dependencies {
+
+}
+
+application {
+    mainClassName = 'dev.appkr.App'
+}
