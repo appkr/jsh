@@ -4,12 +4,20 @@ plugins {
     id 'com.github.mrsarm.jshell.plugin' version '1.0.0'
 }
 
+ext {
+    jacksonVersion = '2.11.2'
+}
+
 repositories {
+    mavenCentral()
     jcenter()
 }
 
 dependencies {
-
+    implementation 'org.apache.commons:commons-lang3:3.11'
+    implementation "com.fasterxml.jackson.core:jackson-core:${jacksonVersion}"
+    implementation "com.fasterxml.jackson.core:jackson-annotations:${jacksonVersion}"
+    implementation "com.fasterxml.jackson.core:jackson-databind:${jacksonVersion}"
 }
 
 application {
