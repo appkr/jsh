@@ -50,7 +50,13 @@ $6 ==> "RJsQrNWp1pp"
   </dependencies>
 ```
 
+```java
+// startup.jsh
+import org.apache.commons.lang3.*;
+import com.fasterxml.jackson.databind.*;
+```
+
 ```bash
 ~/jsh $ mvn package
-~/jsh $ mvn jshell:run
+~/jsh $ mvn jshell:run -Djshell.scripts="startup.jsh"
 ```
