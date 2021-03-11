@@ -12,3 +12,13 @@ import com.google.common.collect.*;
 import com.fasterxml.jackson.core.*;
 import com.fasterxml.jackson.core.type.*;
 import com.fasterxml.jackson.databind.*;
+import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
+
+var mapper = new ObjectMapper();
+mapper.registerModule(new JavaTimeModule());
+mapper.disable(
+        DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES,
+        DeserializationFeature.READ_DATE_TIMESTAMPS_AS_NANOSECONDS);
+    mapper.disable(SerializationFeature.WRITE_DATE_TIMESTAMPS_AS_NANOSECONDS,
+        SerializationFeature.WRITE_DATES_AS_TIMESTAMPS,
+        SerializationFeature.FAIL_ON_EMPTY_BEANS);
