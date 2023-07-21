@@ -1,9 +1,4 @@
-target
-*.iml
-*.ipr
-*.iws
+build
+.gradle
 .idea
-.classpath
-.project
-.settings
 .DS_Store

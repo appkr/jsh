@@ -1,62 +1,47 @@
-Jshell with External Libraries
-@see https://github.com/johnpoth/jshell-maven-plugin
+## Jshell with External Libraries
+@see https://github.com/mrsarm/jshell-plugin
 
 ## Install
 
 ```bash
 $ git clone git@github.com:appkr/jsh
-$ cd jsh
-~/jsh $ mvn package
 ```
 
 ## Run
 
 ```bash
-~/jsh $ mvn jshell:run
+$ cd jsh
+~/jsh $ ./gradlew --no-daemon --console plain jshell
 ```
 
 ## Example
 
 ```bash
 $ jsh
-jshell> import com.fasterxml.jackson.databind.*;
+jshell> var om = new ObjectMapper()
+var om = new ObjectMapper()om ==> com.fasterxml.jackson.databind.ObjectMapper@6f815e7f
 
-jshell> var om = new ObjectMapper();
-om ==> com.fasterxml.jackson.databind.ObjectMapper@6b57696f
+jshell> var list = List.of("foo", "bar") 
+var list = List.of("foo", "bar")list ==> [foo, bar]
 
-jshell> var list = new ArrayList<String>(Arrays.asList("foo", "bar")) 
-list ==> [foo, bar]
-
-jshell> om.writeValueAsString(list);
-$4 ==> "[\"foo\",\"bar\"]"
-
-jshell> import org.apache.commons.lang3.RandomStringUtils;
+jshell> om.writeValueAsString(list)
+om.writeValueAsString(list)$3 ==> "[\"foo\",\"bar\"]"
 
 jshell> RandomStringUtils.randomAlphanumeric(11)
-$6 ==> "RJsQrNWp1pp"
+RandomStringUtils.randomAlphanumeric(11)$4 ==> "GM4yMT7kKr7"
 ```
 
 ## Add dependency and make it runnable in jshell
 
-```xml
-<!--pom.xml-->
-  <dependencies>
-    <dependency>
-      <groupId>org.apache.commons</groupId>
-      <artifactId>commons-lang3</artifactId>
-      <version>3.11</version>
-    </dependency>
-    <!--...-->
-  </dependencies>
+```groovy
+// build.gradle
+dependencies {
+    implementation 'org.apache.commons:commons-lang3:3.11'
+    // ...
+}
 ```
 
 ```java
 // startup.jsh
 import org.apache.commons.lang3.*;
-import com.fasterxml.jackson.databind.*;
-```
-
-```bash
-~/jsh $ mvn package
-~/jsh $ mvn jshell:run -Djshell.scripts="startup.jsh"
 ```
